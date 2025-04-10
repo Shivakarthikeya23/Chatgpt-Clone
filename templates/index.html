@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ChatGPT Clone</title>
+    <link rel="icon" href="https://chat.openai.com/favicon.ico" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-900 text-white min-h-screen flex overflow-hidden">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-gray-800 p-4 flex-shrink-0 hidden md:flex flex-col">
+        <form id="resetForm">
+            <button id="resetForm"
+                class="mb-4 bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded transition duration-300 w-full">
+                🧹 Clear Chat
+            </button>
+
+        </form>
+
+        <h2 class="text-lg font-bold mb-2">Past Chats</h2>
+        <div class="flex flex-col gap-2 overflow-auto">
+            {% for chat in myChats %}
+            <div class="bg-gray-700 px-3 py-2 rounded text-sm truncate cursor-pointer chat-history-item"
+                data-question="{{ chat.question }}" data-answer="{{ chat.answer }}">
+                {{ chat.question }}
+            </div>
+            {% endfor %}
+        </div>
+    </aside>
+
+    <!-- Main Chat Window -->
+    <main class="flex-1 flex flex-col overflow-hidden">
+
+        <!-- Header -->
+        <header class="bg-gray-800 text-center py-4 shadow-md">
+            <h1 class="text-2xl font-bold">ChatGPT Clone</h1>
+        </header>
+
+        <!-- Chat Display -->
+        <section id="chatBox" class="flex-1 overflow-y-auto p-6 space-y-6">
+            <div class="chat-block flex flex-col space-y-4" id="chat-container">
+                <div class="text-center text-gray-400 text-sm">
+                    Start chatting by typing a message below...
+                </div>
+            </div>
+        </section>
+
+        <!-- Input Area -->
+        <footer class="bg-gray-800 p-4 flex items-center gap-2">
+            <input id="questionInput" type="text" placeholder="Send a message..."
+                class="flex-1 p-3 rounded-md bg-gray-700 text-white focus:outline-none" />
+            <button id="sendButton"
+                class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md transition duration-200">
+                Send
+            </button>
+        </footer>
+
+    </main>
+
+    <script src="/static/js/script.js"></script>
+</body>
+
+</html>
